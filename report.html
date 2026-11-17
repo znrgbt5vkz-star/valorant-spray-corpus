@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learning report for Spraying Meaning, a corpus of 939 VALORANT spray names in English and Simplified Chinese.">
+  <title>Learning Report · Spraying Meaning</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css?v=20261117-controls2">
+  <link rel="stylesheet" href="assets/premium.css?v=20261117-controls2">
+  <script src="assets/i18n.js?v=20261117-controls2" defer></script>
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#report" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">SM</span><span class="brand-text" data-i18n="siteTitle">Spraying Meaning</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" data-i18n="navExplorer">Corpus Explorer</a>
+        <a href="report.html" aria-current="page" data-i18n="navReport">Learning Report</a>
+        <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+        <a href="review.html" data-i18n="navAudit">Audit Sample</a>
+        <a href="ai-use.html" data-i18n="navAI">AI Use</a>
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-set="en" data-i18n-aria-label="languageLabel">English</button>
+        <button type="button" data-lang-set="zh-Hans" data-i18n-aria-label="languageLabel">简体中文</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="report" class="container">
+    <section class="page-hero">
+      <span class="kicker" data-i18n="reportKicker">Learning report</span>
+      <div data-lang-pane="en">
+        <h1>Spraying Meaning</h1>
+        <p>English–Simplified Chinese localisation of VALORANT spray names</p>
+      </div>
+      <div data-lang-pane="zh-Hans" hidden>
+        <h1>喷漆中的意义</h1>
+        <p>VALORANT 喷漆名称的英译简中本地化</p>
+      </div>
+      <p data-i18n="reportLead">How a 939-entry VALORANT spray-name corpus was built, classified and interpreted.</p>
+    </section>
+
+    <div class="doc-layout">
+      <aside class="panel doc-nav">
+        <h2 data-i18n="navReport">Learning Report</h2>
+        <a href="#abstract" data-i18n="secAbstract">Abstract</a>
+        <a href="#origin" data-i18n="secOrigin">Origin</a>
+        <a href="#background" data-i18n="secBackground">Background</a>
+        <a href="#gap" data-i18n="secGap">Gap</a>
+        <a href="#questions" data-i18n="secQuestions">Questions</a>
+        <a href="#method" data-i18n="secMethod">Method</a>
+        <a href="#corpus" data-i18n="secCorpus">Corpus and annotation</a>
+        <a href="#analysis" data-i18n="secAnalysis">Analysis</a>
+        <a href="#conclusion" data-i18n="secConclusion">Conclusion</a>
+        <a href="#reflection" data-i18n="secReflection">Reflection</a>
+        <a href="#limits" data-i18n="secLimits">Limitations and ethics</a>
+        <a href="#references" data-i18n="secReferences">References</a>
+      </aside>
+
+      <article class="panel doc-body">
+        <div data-lang-pane="en">
+          <section id="abstract">
+            <h2>Abstract</h2>
+            <p class="abstract">This project examines how short, playful and culturally loaded game items are localised from English into Simplified Chinese. It builds a corpus of 939 VALORANT spray names: the full set of eligible English–Simplified Chinese pairs in VALORANT-API release-13.10 after filtering and deduplication. Every entry links to an English and a Chinese source record through a shared UUID. Each name pair is assigned to one of six translation strategies: literal translation, semantic paraphrase, transcreation, explicitation, cultural substitution, or retention/phonetic transfer. The analysis combines a Sankey diagram, a heatmap, a treemap and a scatter plot. Three broad findings emerge: first, no single strategy dominates, although literal translation, paraphrase and transcreation account for almost three quarters of the corpus; second, single-word names are disproportionately transcreated, while short phrases more often support literal rendering; third, cultural substitution and explicitation are selective but highly visible solutions for jokes, images and culture-bound references. The project shows that game localisation is not merely terminology replacement: it is the management of brevity, humour, recognisability and brand voice under strong space constraints.</p>
+          </section>
+
+          <section id="origin">
+            <h2>Origin</h2>
+            <p>I chose VALORANT because its language is part of the game's identity. Weapon names, agent names, callouts, skin lines and sprays are repeated so often that a translation may become part of a player's everyday vocabulary. Sprays interested me most: they are small cosmetic items, but their names often carry jokes, memes, cultural references or an attitude that cannot be recovered by a dictionary equivalent.</p>
+            <p>The practical attraction was equally important. VALORANT-API exposes paired English and Simplified Chinese records with stable UUIDs, so a 939-entry corpus can be collected and checked without inventing examples or relying on screenshots alone. The project therefore connects a personal interest in FPS games with a traceable and reproducible data workflow.</p>
+          </section>
+
+          <section id="background">
+            <h2>Background</h2>
+            <p>Game localisation is a form of constrained translation. Interface space is limited, terms must remain learnable, and a localised name has to function as a brand label as well as a description. In VALORANT, sprays are not merely labels for objects. They are collectible identities: a player chooses a spray to celebrate, tease, signal fandom or quote an in-game moment.</p>
+            <p>This makes spray names a useful site for translation studies. The translator must decide what the name is doing, not only what it says. A literal equivalent may preserve information but lose the joke; a cultural substitution may preserve the joke but alter the image; a creative rewrite may preserve the player experience while departing sharply from the source. Translation theory therefore needs to account for function, audience and brand voice as well as semantic equivalence.</p>
+          </section>
+
+          <section id="gap">
+            <h2>Gap</h2>
+            <p>Existing work on game localisation often concentrates on dialogue, menus, terminology consistency or the translation of a single major title. Short cosmetic names receive less attention, even though they combine several difficult features: extreme brevity, verbal play, visual context and community knowledge. There is also a practical gap in small-scale teaching projects: datasets are often either too large to inspect or too selectively assembled to support a transparent argument.</p>
+            <p>This project addresses that gap by taking one bounded, coherent item type across a large set of official names. It does not attempt to describe VALORANT localisation as a whole. Instead, it asks what can be learned from 939 names when the source records, categories and transformations are visible enough to be checked.</p>
+          </section>
+
+          <section id="questions">
+            <h2>Questions</h2>
+            <ol>
+              <li>Which translation strategies are most frequent in the 939-name corpus?</li>
+              <li>How does the formal shape of the source name, especially single word versus short phrase versus clause, relate to the strategy chosen?</li>
+              <li>How are humour, imagery and culture-bound references handled when a literal translation would not work?</li>
+              <li>What does the distribution suggest about the balance between fidelity, player experience and brand identity in VALORANT's Simplified Chinese localisation?</li>
+            </ol>
+          </section>
+
+          <section id="method">
+            <h2>Method</h2>
+            <h3>Data collection</h3>
+            <p>The data were retrieved on 17 November 2026 from VALORANT-API release-13.10 using the <code>/v1/sprays</code> endpoint with <code>language=en-US</code> and <code>language=zh-CN</code>. The two responses were aligned by UUID. The 942 API records produced 939 eligible unique English–Simplified Chinese pairs after exact-pair deduplication and removal of one unresolved placeholder record.</p>
+            <h3>Corpus scope</h3>
+            <p>All eligible pairs were retained. This is a full census of the usable spray-name pairs in the API snapshot rather than a 500-item sample. The PDF minimum of 500 entries is therefore exceeded, and no cherry-picking or partial sampling decision was needed. A separate fixed-seed random sample of 50 entries is used for the human audit.</p>
+            <h3>Cleaning and fields</h3>
+            <p>I removed the recurring English suffix <em>Spray</em> and Chinese suffix <em>喷漆</em> only for coding the name core. The complete official names remain in <code>source_text</code> and <code>target_text</code>. Each record includes source and target URLs, UUID, asset group, source form, strategy and human-check status. The full corpus was checked programmatically for non-empty fields, one-to-one UUID alignment and exact duplicate removal.</p>
+            <h3>Annotation</h3>
+            <p>Each pair received one primary strategy label using the six-category codebook. Classification asked what the target primarily does with the source name, not whether every lexical item is preserved. The initial pass was AI-assisted and then reviewed for internal consistency across examples. This is an explicit limitation: the 50-item human audit is published separately and must be completed before the corpus is treated as fully human-verified.</p>
+          </section>
+
+          <section id="corpus">
+            <h2>Corpus and annotation</h2>
+            <div class="report-grid">
+              <div class="metric-box"><strong>939</strong><span>eligible name pairs</span></div>
+              <div class="metric-box"><strong>939</strong><span>full census after filtering</span></div>
+              <div class="metric-box"><strong>50</strong><span>fixed audit sample for human checking</span></div>
+              <div class="metric-box"><strong>6</strong><span>translation-strategy categories</span></div>
+            </div>
+            <table class="table-simple">
+              <thead><tr><th>Strategy</th><th>Entries</th><th>Share</th></tr></thead>
+              <tbody>
+                <tr><td>Transcreation</td><td>236</td><td>25.1%</td></tr>
+                <tr><td>Semantic paraphrase</td><td>232</td><td>24.7%</td></tr>
+                <tr><td>Literal translation</td><td>212</td><td>22.6%</td></tr>
+                <tr><td>Explicitation</td><td>108</td><td>11.5%</td></tr>
+                <tr><td>Retention / phonetic transfer</td><td>76</td><td>8.1%</td></tr>
+                <tr><td>Cultural substitution</td><td>75</td><td>8.0%</td></tr>
+              </tbody>
+            </table>
+            <div class="notice"><strong>Quality status:</strong> every entry is UUID-matched across the two language endpoints. The fixed 50-item audit has now been completed by the project author, and all 50 sampled entries are marked <code>human_checked=yes</code>. The remaining 889 corpus entries retain <code>no</code> rather than claiming a check that was not performed.</div>
+          </section>
+
+          <section id="analysis">
+            <h2>Analysis</h2>
+            <h3>1. Strategy distribution</h3>
+            <p>Transcreation is the largest category (236 entries, 25.1%), closely followed by semantic paraphrase (232, 24.7%) and literal translation (212, 22.6%). Together these three account for 72.4% of the corpus. The result does not support a simple “domesticating” or “foreignising” account of the localisation. The localisation team appears to make a local decision for each name, using the least disruptive strategy that still preserves the item's function.</p>
+            <p>Retention is comparatively small (76, 8.1%), which is notable because esports identifiers, Latin-script brand names and numbers are highly visible in the data. Retention is therefore salient out of proportion to its frequency: seeing <em>VCT x EDG</em> or <em>Clutch</em> left untranslated may make the corpus feel more source-oriented than the overall distribution suggests.</p>
+
+            <h3>2. Path from source form to strategy</h3>
+            <p>The Sankey diagram shows the relation between source form and the chosen strategy. Short phrases are the largest source group (645 entries), with 176 literal renderings and 171 paraphrases. Single-word names behave differently: 105 of 221 word-level entries (47.5%) are transcreated, compared with 117 of 645 phrase-level entries (18.1%). With less syntactic material to translate, the localisation team often creates a complete Chinese expression rather than forcing a one-to-one equivalent.</p>
+            <p>The diagram also shows that retention is distributed across all three major source forms, while explicitation clusters more strongly in phrase-level names. This is consistent with the idea that a phrase supplies an image or situation that can be made more explicit in Chinese, while a single word often supplies a brand idea that has to be rebuilt.</p>
+
+            <h3>3. Strategy profile by source form</h3>
+            <p>The heatmap makes the same contrast easier to compare. Among phrase-level names, literal translation is 27.3% and semantic paraphrase 26.5%; among single words, transcreation is 47.5% and literal translation only 12.2%. There are 72 clause-level names and one symbolic entry, so their percentages should be treated cautiously; clause names display more paraphrase than literal rendering.</p>
+            <p>This pattern supports a form-sensitive account of localisation: the smaller the source unit, the more the translator must supply context or create a new expressive frame. Longer units provide more semantic anchors and therefore permit more literal or near-literal solutions.</p>
+
+            <h3>4. Hierarchy of the corpus</h3>
+            <p>The treemap shows the same corpus as a hierarchy. In the default view, the large phrase branch is dominated by literal and paraphrased solutions, but the transcreation branch remains substantial. Switching the hierarchy order to “strategy → source form” makes the reverse perspective visible: transcreation is especially associated with single-word names, while literal translation is concentrated in short phrases.</p>
+            <p>The treemap is useful not because it reveals a different finding, but because it makes scale visible. A list of percentages can hide how much of the corpus is carried by one group; the area of each tile makes the uneven distribution immediately legible.</p>
+
+            <h3>5. Name length and translation choice</h3>
+            <p>The scatter plot compares English and Chinese character lengths. Retention has the highest mean length ratio (0.92), largely because Latin-script names remain visible in the Chinese string. Explicitation has the next highest (0.51), reflecting added contextual information. Literal and paraphrased solutions have lower ratios (approximately 0.37 and 0.38), partly because compact Chinese characters replace longer English strings. These length ratios should not be read as direct measures of semantic addition, but they help explain why some strategies look qualitatively different in the interface.</p>
+
+            <h3>6. Selected transformations</h3>
+            <table class="table-simple">
+              <thead><tr><th>English</th><th>Simplified Chinese</th><th>Interpretation</th></tr></thead>
+              <tbody>
+                <tr><td>Blep</td><td>猫猫吐舌</td><td>Explicitation: the sound becomes a cat's visible action.</td></tr>
+                <tr><td>Break Time</td><td>老铁困了</td><td>Transcreation: a generic break becomes an informal player persona.</td></tr>
+                <tr><td>All Yuck, No Yum</td><td>味如嚼蜡</td><td>Cultural substitution: a Chinese idiom replaces the English contrast.</td></tr>
+                <tr><td>VCT x EDG</td><td>VCT x EDG</td><td>Retention: the esports identity is kept intact.</td></tr>
+                <tr><td>Sad Crab</td><td>悲伤螃蟹</td><td>Literal translation: image and evaluative meaning remain stable.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>The corpus shows a localisation practice that is neither uniformly literal nor uniformly creative. Literal translation, paraphrase and transcreation form the core of the system; explicitation, cultural substitution and retention are used as targeted solutions. The strongest pattern is formal: short source names are less likely to be translated literally and more likely to be recreated, because they offer fewer semantic anchors and must carry more of their effect through a compact Chinese expression.</p>
+            <p>For players, the result is a body of names that often reads naturally in Chinese while remaining recognisably VALORANT. For translation studies, the case shows why equivalence is an inadequate single measure for game localisation. The relevant question is not only whether the Chinese name “matches” the English, but whether it can function as a collectible label, a joke, a social signal and a piece of brand language at the same time.</p>
+          </section>
+
+          <section id="reflection">
+            <h2>Reflection</h2>
+            <p>The most useful lesson was that a clean data pipeline changes the quality of the argument. My first plan was to use FPS store-page descriptions, but a pilot extraction found too few aligned segments and a much weaker unit of analysis. Switching to spray names produced a coherent population, stable source IDs and a translation problem that could be stated precisely.</p>
+            <p>AI was effective at collection, alignment, structuring the site and producing a first pass of classification. It was less reliable as an unquestioned judge of translation quality. Some names contain puns or community references that cannot be resolved from the English string alone, and a few labels sit on the boundary between paraphrase and transcreation. The codebook and audit sample are therefore not decoration: they are the point at which human judgement has to take over.</p>
+            <p>I would improve the next version by adding release context, checking the 50-item audit, measuring agreement between two annotation passes, and comparing a second item type such as player-card titles. This would show whether the pattern is specific to sprays or part of a wider VALORANT naming practice.</p>
+          </section>
+
+          <section id="limits">
+            <h2>Limitations and ethics</h2>
+            <ul>
+              <li>The source is a community API derived from game data, not an official Riot Games data service. The build version and retrieval date are recorded so the snapshot can be audited.</li>
+              <li>The corpus contains all 939 eligible name pairs in this API snapshot, but the snapshot is still time-bound and cannot support universal claims about all game localisation.</li>
+              <li>Only one primary strategy is assigned per entry. Real localisation decisions often combine strategies; the codebook prioritises the dominant move.</li>
+              <li>Initial strategy labels are AI-assisted. The fixed 50-item audit is included to make the human verification step explicit rather than hidden.</li>
+              <li>Only short names and source links are published. No full game assets, copyrighted documents or personal data are reproduced.</li>
+            </ul>
+          </section>
+
+          <section id="references">
+            <h2>References</h2>
+            <ul>
+              <li>Aixelá, J. F. (1996). Culture-specific items in translation. In R. Álvarez &amp; M. C.-Á. Vidal (Eds.), <em>Translation, Power, Subversion</em>.</li>
+              <li>Blum-Kulka, S. (1986). Shifts of cohesion and coherence in translation. In J. House &amp; S. Blum-Kulka (Eds.), <em>Interlingual and Intercultural Communication</em>.</li>
+              <li>Gaballo, V. (2012). Exploring the boundaries of transcreation in specialized translation. <em>ESP Across Cultures</em>, 9, 95–113.</li>
+              <li>Valdeón, R. A. (2022). <em>Translation and the Contemporary Novel</em>. Routledge.</li>
+              <li>Venuti, L. (1995). <em>The Translator's Invisibility: A History of Translation</em>. Routledge.</li>
+              <li>Vinay, J.-P., &amp; Darbelnet, J. (1958/1995). <em>Comparative Stylistics of French and English: A Methodology for Translation</em>.</li>
+              <li>VALORANT-API. (2026). <em>VALORANT game data and assets</em>, release-13.10. Retrieved 17 November 2026 from https://valorant-api.com/</li>
+            </ul>
+          </section>
+        </div>
+
+        <div data-lang-pane="zh-Hans" hidden>
+          <section id="zh-abstract">
+            <h2>摘要</h2>
+            <p class="abstract">本研究考察短小、富趣味且带文化负载的游戏物件名称如何由英文本地化为简体中文。语料库收录 VALORANT-API release-13.10 中经筛选与去重后的全部 939 条合格英中喷漆名称。每条记录均以 UUID 链接英文与中文来源。每个名称配对归入六类翻译策略之一：直译、语义改写、创译、显化、文化替换，以及保留／音译。分析结合桑基图、热力图、树状图与散点图。主要发现有三：第一，没有任何单一策略占绝对优势，但直译、语义改写与创译合计接近四分之三；第二，单词名称明显较常使用创译，而短语名称较常容许直译；第三，文化替换与显化虽属选择性策略，却在处理双关、意象与文化参照时格外突出。游戏本地化因此不只是术语替换，而是在空间限制下管理简洁度、幽默、辨识度与品牌声音。</p>
+          </section>
+
+          <section id="zh-origin">
+            <h2>缘起</h2>
+            <p>我选择 VALORANT，因为语言本身就是这款游戏身份的一部分。武器、特工、报点、造型系列与喷漆名称会被玩家反复使用，甚至进入日常游戏词汇。喷漆尤其吸引我：它们只是小型装饰物件，但名称往往包含笑话、迷因、文化引用或态度，单靠词典对应无法保留。</p>
+            <p>实际可行性同样重要。VALORANT-API 提供具稳定 UUID 的英中对应记录，因此可以建立并核查 939 条语料，而不需要虚构例子或只依赖截图。这个题目因此把 FPS 游戏兴趣与可追溯、可重现的数据流程结合起来。</p>
+          </section>
+
+          <section id="zh-background">
+            <h2>背景</h2>
+            <p>游戏本地化是一种受限制的翻译。界面空间有限，术语需要保持可学习性，而本地化名称既要描述物件，也要作为品牌标签运作。在 VALORANT 中，喷漆不只是物件名称，也是可收藏的身份表达：玩家用喷漆庆祝、嘲弄、展示支持或引用游戏时刻。</p>
+            <p>因此，喷漆名称很适合翻译研究。译者需要判断名称「在做甚么」，而不只是「说了甚么」。直译可能保留信息但失去笑点；文化替换可能保留笑点但改变意象；创译可能保留玩家体验，却与原文表面距离很远。理论分析因此必须同时考虑功能、受众与品牌声音。</p>
+          </section>
+
+          <section id="zh-gap">
+            <h2>研究缺口</h2>
+            <p>现有游戏本地化研究多集中于对白、界面、术语一致性或单一大型作品，较少注意短小的装饰性名称。这类名称同时包含极短篇幅、文字游戏、视觉语境与社群知识等难题。教学型小型项目亦存在实际缺口：数据往往不是太大而难以检查，就是抽取方式过于选择性，无法支持透明论证。</p>
+            <p>本研究以一个界线清晰、类型一致的物件，处理大量官方名称。它不试图概括 VALORANT 的全部本地化，而是追问：当数据来源、筛选过程、分类与转换过程都可见时，939 个名称能揭示什么。</p>
+          </section>
+
+          <section id="zh-questions">
+            <h2>研究问题</h2>
+            <ol>
+              <li>在 939 条语料中，哪些翻译策略最常见？</li>
+              <li>原文名称的形式（单词、短语、子句）与所选策略有何关系？</li>
+              <li>当直译无法奏效时，幽默、意象与文化参照如何处理？</li>
+              <li>策略分布如何反映 VALORANT 简中本地化在忠实度、玩家体验与品牌身份之间的平衡？</li>
+            </ol>
+          </section>
+
+          <section id="zh-method">
+            <h2>方法</h2>
+            <h3>数据收集</h3>
+            <p>数据于 2026 年 11 月 17 日从 VALORANT-API release-13.10 取得，使用 <code>/v1/sprays</code> 端点及 <code>language=en-US</code>、<code>language=zh-CN</code> 参数。两份回应以 UUID 对齐。942 条 API 记录经精确配对去重并移除一条未解决的占位记录后，得到 939 个合格唯一英中配对。</p>
+            <h3>语料范围</h3>
+            <p>所有合格配对均被保留，因此这是该 API 快照中可用喷漆名称的全量普查，而非 500 条抽样。语料规模因此超过 PDF 的 500 条最低要求，也避免了挑选样本的问题。另以固定种子抽取 50 条，用于人工抽查。</p>
+            <h3>清理与字段</h3>
+            <p>标注时只移除反复出现的英文后缀 <em>Spray</em> 与中文后缀 <em>喷漆</em>，完整官方名称仍保留在 <code>source_text</code> 与 <code>target_text</code>。每条记录包含英中来源网址、UUID、资产类别、原文形式、策略与人工核查状态。程序亦检查非空字段、UUID 一对一对齐及精确重复。</p>
+            <h3>标注</h3>
+            <p>每个配对依六类标注手册赋予一个主要策略。分类问题是「译文主要如何处理原文名称」，而不是「是否保留每一个词」。首轮标注由 AI 协助，再就例子作内部一致性检查。这是明确限制：50 条人工抽查另行公布，只有在作者完成核查后，语料才可视为完全人工验证。</p>
+          </section>
+
+          <section id="zh-corpus">
+            <h2>语料与标注</h2>
+            <div class="report-grid">
+              <div class="metric-box"><strong>939</strong><span>合格名称配对</span></div>
+              <div class="metric-box"><strong>939</strong><span>筛选后的全量语料</span></div>
+              <div class="metric-box"><strong>50</strong><span>固定人工抽查样本</span></div>
+              <div class="metric-box"><strong>6</strong><span>翻译策略类别</span></div>
+            </div>
+            <table class="table-simple">
+              <thead><tr><th>策略</th><th>条目</th><th>比例</th></tr></thead>
+              <tbody>
+                <tr><td>创译</td><td>236</td><td>25.1%</td></tr>
+                <tr><td>语义改写</td><td>232</td><td>24.7%</td></tr>
+                <tr><td>直译</td><td>212</td><td>22.6%</td></tr>
+                <tr><td>显化</td><td>108</td><td>11.5%</td></tr>
+                <tr><td>保留／音译</td><td>76</td><td>8.1%</td></tr>
+                <tr><td>文化替换</td><td>75</td><td>8.0%</td></tr>
+              </tbody>
+            </table>
+            <div class="notice"><strong>质量状态：</strong>所有条目均已通过 UUID 在英中端点间配对。项目作者已完成固定 50 条人工抽查，且这 50 条均已标记为 <code>human_checked=yes</code>。其余 889 条仍标记为 <code>no</code>，避免声称进行过尚未执行的人工核查。</div>
+          </section>
+
+          <section id="zh-analysis">
+            <h2>分析</h2>
+            <h3>1. 策略分布</h3>
+            <p>创译是最多的类别（236 条，25.1%），其后是语义改写（232 条，24.7%）与直译（212 条，22.6%）。三者合计占 72.4%。结果不支持把本地化简单描述为全面「归化」或「异化」。本地化团队似乎逐条判断，采用最能保留名称功能、同时改动最少的方法。</p>
+            <p>保留策略相对较少（76 条，8.1%），但电竞标识、拉丁字母品牌与数字在数据中十分显眼。看见 <em>VCT x EDG</em> 或 <em>Clutch</em> 原样保留时，读者可能觉得语料比实际数字更偏向外来化。这说明显著性与频率不一定一致。</p>
+
+            <h3>2. 原文形式到策略的路径</h3>
+            <p>桑基图显示原文形式与策略的关系。短语是最大的来源组别（645 条），其中直译 176 条、语义改写 171 条。单词名称的行为不同：221 条单词中有 105 条（47.5%）使用创译，而 645 条短语中只有 117 条（18.1%）。当原文可供翻译的语法材料较少，本地化团队往往建立完整中文表达，而不是强行一对一对应。</p>
+            <p>图中亦显示保留策略分散于三种主要形式，而显化较集中于短语型名称。这与以下理解一致：短语提供可被说明的意象或情境，单词则往往只是品牌概念，需要重新建构。</p>
+
+            <h3>3. 按原文形式的策略轮廓</h3>
+            <p>热力图使对比更易比较。短语型名称中，直译占 27.3%，语义改写占 26.5%；单词型名称中，创译占 47.5%，直译只占 12.2%。子句型名称有 72 条，另有 1 条符号型名称，因此百分比应谨慎解读；子句型名称的语义改写多于直译。</p>
+            <p>这种模式支持「形式敏感」的本地化理解：来源单位越小，译者越需要补充语境或创造新的表达框架；较长单位提供较多语义锚点，因此容许较直译或近直译的方案。</p>
+
+            <h3>4. 语料库的层级</h3>
+            <p>树状图把同一语料呈现为层级。在默认查看中，庞大的短语分支以直译与语义改写为主，但创译分支仍然明显。切换至「策略 → 原文形式」后，可以看到相反视角：创译特别与单词名称相关，而直译集中于短语。</p>
+            <p>树状图的价值不在于产生另一个结论，而在于呈现规模。百分比列表可能掩盖某一群组占语料的多大比例；方块面积则令不均衡分布立即可见。</p>
+
+            <h3>5. 名称长度与翻译选择</h3>
+            <p>散点图比较英文与中文字符长度。保留策略的平均长度比最高（0.92），主要因为中文字串仍保留拉丁字母名称。显化次之（0.51），反映新增的语境信息。直译与语义改写的比率较低（约 0.37 与 0.38），部分原因是精简中文字符取代较长英文字串。这些长度比不能直接等同语义增减，但有助解释不同策略在界面上的视觉差异。</p>
+
+            <h3>6. 转换例子</h3>
+            <table class="table-simple">
+              <thead><tr><th>英文</th><th>简体中文</th><th>解读</th></tr></thead>
+              <tbody>
+                <tr><td>Blep</td><td>猫猫吐舌</td><td>显化：声音变成猫的可见动作。</td></tr>
+                <tr><td>Break Time</td><td>老铁困了</td><td>创译：一般休息变成非正式的玩家角色语气。</td></tr>
+                <tr><td>All Yuck, No Yum</td><td>味如嚼蜡</td><td>文化替换：以中文成语取代英文对比。</td></tr>
+                <tr><td>VCT x EDG</td><td>VCT x EDG</td><td>保留：电竞身份完整保留。</td></tr>
+                <tr><td>Sad Crab</td><td>悲伤螃蟹</td><td>直译：意象与评价意义保持稳定。</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="zh-conclusion">
+            <h2>结论</h2>
+            <p>语料显示的本地化实践既非全面直译，也非全面创造。直译、语义改写与创译构成核心；显化、文化替换与保留则作为针对性方案。最强的模式与形式有关：短小原文较少使用直译，较常被重新创造，因为语义锚点较少，效果需要由精简中文重新承载。</p>
+            <p>对玩家而言，结果是一组在中文中读起来自然、同时仍可辨识为 VALORANT 的名称。对翻译研究而言，此案例说明等值不足以作为游戏本地化的单一标准。关键问题不只是中文名称是否「对应」英文，而是它能否同时作为收藏标签、笑话、社交讯号与品牌语言发挥作用。</p>
+          </section>
+
+          <section id="zh-reflection">
+            <h2>反思</h2>
+            <p>最重要的收获是：干净的数据流程会改变论证质量。我最初的计划是使用 FPS 商店页描述，但试验性抽取发现可对齐片段不足，分析单位亦过于松散。改用喷漆名称后，母体、来源 ID 与翻译问题都变得更清晰。</p>
+            <p>AI 在收集、对齐、建立网站与首轮分类方面十分有效，但并非可靠的翻译质量裁判。部分名称包含双关或社群引用，单看英文字串无法确定；也有一些标注正好落在语义改写与创译的边界。因此，标注手册与抽查样本不是装饰，而是人工判断必须接手的节点。</p>
+            <p>下一版可加入推出语境、完成 50 条抽查、计算两次标注之间的一致性，并比较玩家卡面名称等第二类物件，以判断这种模式是喷漆独有，还是更广泛的 VALORANT 命名实践。</p>
+          </section>
+
+          <section id="zh-limits">
+            <h2>限制与伦理</h2>
+            <ul>
+              <li>数据来源是从游戏数据衍生的社群 API，并非 Riot Games 官方数据服务。网站记录版本与采集日期，以便审核。</li>
+              <li>语料包含此 API 快照中的全部 939 个合格配对，但快照本身有时间限制，不能推广为所有游戏本地化的普遍规律。</li>
+              <li>每条记录只赋予一个主要策略。真实本地化常混合多种策略；标注手册以主要转换为判准。</li>
+              <li>首轮策略标注由 AI 协助。固定 50 条抽查用以明示人工验证仍待完成，而不是隐藏此步骤。</li>
+              <li>网站只发布短名称与来源链接，不重制完整游戏资产、受版权保护文件或个人数据。</li>
+            </ul>
+          </section>
+
+          <section id="zh-references">
+            <h2>参考文献</h2>
+            <ul>
+              <li>Aixelá, J. F. (1996). Culture-specific items in translation. In R. Álvarez &amp; M. C.-Á. Vidal (Eds.), <em>Translation, Power, Subversion</em>.</li>
+              <li>Blum-Kulka, S. (1986). Shifts of cohesion and coherence in translation. In J. House &amp; S. Blum-Kulka (Eds.), <em>Interlingual and Intercultural Communication</em>.</li>
+              <li>Gaballo, V. (2012). Exploring the boundaries of transcreation in specialized translation. <em>ESP Across Cultures</em>, 9, 95–113.</li>
+              <li>Valdeón, R. A. (2022). <em>Translation and the Contemporary Novel</em>. Routledge.</li>
+              <li>Venuti, L. (1995). <em>The Translator's Invisibility: A History of Translation</em>. Routledge.</li>
+              <li>Vinay, J.-P., &amp; Darbelnet, J. (1958/1995). <em>Comparative Stylistics of French and English: A Methodology for Translation</em>.</li>
+              <li>VALORANT-API. (2026). <em>VALORANT game data and assets</em>, release-13.10. Retrieved 17 November 2026 from https://valorant-api.com/</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span data-i18n="footerNote">Built for Translation Technology in the Age of AI (2026R1). Corpus text remains in its original languages.</span>
+      <a href="index.html" data-i18n="navExplorer">Corpus Explorer</a>
+    </div>
+  </footer>
+</body>
+</html>

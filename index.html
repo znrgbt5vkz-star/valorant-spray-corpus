@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A bilingual interactive corpus explorer of 939 English to Simplified Chinese VALORANT spray names.">
+  <title>Spraying Meaning · VALORANT Corpus Explorer</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css?v=20261117-controls2">
+  <link rel="stylesheet" href="assets/premium.css?v=20261117-controls2">
+  <script src="assets/vendor/d3.v7.min.js" defer></script>
+  <script src="assets/vendor/d3-sankey.min.js" defer></script>
+  <script src="assets/i18n.js?v=20261117-controls2" defer></script>
+  <script src="assets/app.js?v=20261117-controls2" defer></script>
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#explorer" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">SM</span>
+        <span class="brand-text" data-i18n="siteTitle">Spraying Meaning</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page" data-i18n="navExplorer">Corpus Explorer</a>
+        <a href="report.html" data-i18n="navReport">Learning Report</a>
+        <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+        <a href="review.html" data-i18n="navAudit">Audit Sample</a>
+        <a href="ai-use.html" data-i18n="navAI">AI Use</a>
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-set="en" data-i18n-aria-label="languageLabel">English</button>
+        <button type="button" data-lang-set="zh-Hans" data-i18n-aria-label="languageLabel">简体中文</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="explorer">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-status-line"><span class="live-dot" aria-hidden="true"></span><span data-i18n="liveArchive">Live corpus archive</span><span class="status-separator">/</span><span>release-13.10</span></div>
+          <span class="eyebrow" data-i18n="heroEyebrow">VALORANT · English → Simplified Chinese</span>
+          <h1><span data-i18n="heroTitle">Spraying Meaning</span></h1>
+          <p class="hero-lead" data-i18n="heroLead">A corpus of 939 VALORANT spray names, built to examine how short, playful and culturally loaded game text is localised from English into Simplified Chinese.</p>
+          <div class="hero-meta">
+            <span class="pill">939 EN → zh-CN pairs</span>
+            <span class="pill">full census</span>
+            <span class="pill">release-13.10</span>
+            <span class="pill">6 strategies</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="#explorer-title" data-i18n="exploreCorpus">Explore the corpus</a>
+            <a class="button glass" href="report.html" data-i18n="navReport">Learning Report</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-agent-glow" aria-hidden="true"></div>
+          <img class="hero-agent" src="assets/neon-portrait.png" alt="" aria-hidden="true">
+          <div class="hero-reticle" aria-hidden="true">
+            <svg viewBox="0 0 240 240" role="presentation">
+              <circle cx="120" cy="120" r="82"></circle>
+              <circle cx="120" cy="120" r="46"></circle>
+              <path d="M120 16v58M120 166v58M16 120h58M166 120h58"></path>
+              <path class="reticle-accent" d="M120 92v56M92 120h56"></path>
+              <path d="M35 35l26 26M179 179l26 26M205 35l-26 26M61 179l-26 26"></path>
+            </svg>
+            <span class="reticle-label">DATA // 01</span>
+          </div>
+          <div class="stats-grid" aria-label="Corpus statistics">
+            <div class="stat-card"><div class="stat-value" id="populationCount">939</div><div class="stat-label" data-i18n="statEntries">corpus entries</div></div>
+            <div class="stat-card"><div class="stat-value">6</div><div class="stat-label" data-i18n="statStrategies">translation strategies</div></div>
+            <div class="stat-card"><div class="stat-value">50</div><div class="stat-label" data-i18n="statAudit">audit sample</div></div>
+            <div class="stat-card"><div class="stat-value" id="gameVersion">13.10</div><div class="stat-label" data-i18n="statVersion">game data build</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="container"><p class="data-note" data-i18n="dataNote">Source: VALORANT-API, release-13.10. Retrieved 17 November 2026. This is a community API derived from game data, not an official Riot Games API.</p></div>
+    </section>
+
+    <section class="section" aria-labelledby="explorer-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="kicker" data-i18n="explorerKicker">Interactive corpus explorer</span>
+            <h2 id="explorer-title" data-i18n="navExplorer">Corpus Explorer</h2>
+          </div>
+          <p data-i18n="tableHelp">Click a source or target name to search for it. Sort columns with the header buttons.</p>
+        </div>
+
+        <div class="panel explorer-panel">
+          <form id="filterForm" class="controls-grid" autocomplete="off">
+            <div class="field">
+              <label for="searchInput" data-i18n="searchLabel">Search names</label>
+              <input id="searchInput" name="q" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Try: crab, 喷射, VCT, 猫…">
+            </div>
+            <div class="field">
+              <label for="strategyFilter" data-i18n="filterStrategy">Translation strategy</label>
+              <select id="strategyFilter" name="strategy"><option value="" data-i18n="all">All</option></select>
+            </div>
+            <div class="field">
+              <label for="formFilter" data-i18n="filterForm">Source form</label>
+              <select id="formFilter" name="form"><option value="" data-i18n="all">All</option></select>
+            </div>
+            <div class="field">
+              <label for="checkedFilter" data-i18n="filterChecked">Human checked</label>
+              <select id="checkedFilter" name="checked">
+                <option value="" data-i18n="all">All</option>
+                <option value="yes" data-i18n="checkedYes">Yes</option>
+                <option value="no" data-i18n="checkedNo">No</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="groupFilter" data-i18n="filterGroup">Asset group</label>
+              <select id="groupFilter" name="group"><option value="" data-i18n="all">All</option></select>
+            </div>
+          </form>
+          <div class="control-actions">
+            <button class="button primary" type="submit" form="filterForm" data-i18n="applyFilters">Apply filters</button>
+            <button class="button" type="button" id="resetFilters" data-i18n="resetFilters">Reset</button>
+            <button class="button ghost" type="button" id="copyView" data-i18n="copyView">Copy shareable link</button>
+            <button class="button ghost" type="button" id="exportCsv" data-i18n="exportCsv">Export current view</button>
+            <span id="copyStatus" class="sr-only" role="status"></span>
+          </div>
+          <div class="status-row">
+            <span id="activeFilters" data-i18n="noActiveFilters">All entries</span>
+            <span aria-hidden="true">·</span>
+            <span id="resultsCount">939</span>
+          </div>
+        </div>
+
+        <div class="viz-grid">
+          <article class="panel viz-card">
+            <div class="viz-head">
+              <div>
+                <h3 data-i18n="chartSankeyTitle">Path from source form to strategy</h3>
+                <p class="viz-question" data-i18n="chartSankeyQuestion">Which source-name forms lead to which translation strategies?</p>
+              </div>
+              <div class="viz-controls">
+                <label for="minFlow"><span data-i18n="minFlow">Minimum flow</span> <output id="minFlowValue">1</output></label>
+                <input id="minFlow" type="range" min="1" max="25" step="1" value="1">
+              </div>
+            </div>
+            <p class="viz-help" data-i18n="chartSankeyHelp">Click a node or flow to filter. Use the control to hide very small flows.</p>
+            <div id="sankeyChart" class="chart-shell" role="img" aria-label="Sankey diagram of source forms and translation strategies"></div>
+          </article>
+
+          <article class="panel viz-card">
+            <div class="viz-head">
+              <div>
+                <h3 data-i18n="chartHeatmapTitle">Strategy profile by source form</h3>
+                <p class="viz-question" data-i18n="chartHeatmapQuestion">How does translation strategy vary across word, phrase and clause names?</p>
+              </div>
+              <div class="viz-controls">
+                <label for="heatmapMode" data-i18n="valueMode">Cell value</label>
+                <select id="heatmapMode">
+                  <option value="count" data-i18n="counts">Counts</option>
+                  <option value="percent" data-i18n="rowPercent">Row %</option>
+                </select>
+              </div>
+            </div>
+            <p class="viz-help" data-i18n="chartHeatmapHelp">Click a cell to filter by both source form and strategy. Switch between counts and row percentages.</p>
+            <div id="heatmapChart" class="chart-shell" role="img" aria-label="Heatmap of source forms by translation strategy"></div>
+          </article>
+
+          <article class="panel viz-card">
+            <div class="viz-head">
+              <div>
+                <h3 data-i18n="chartTreemapTitle">Hierarchy of the corpus</h3>
+                <p class="viz-question" data-i18n="chartTreemapQuestion">Which strategies dominate each source-form group in the current view?</p>
+              </div>
+              <div class="viz-controls">
+                <label for="hierarchyMode" data-i18n="hierarchyMode">Hierarchy order</label>
+                <select id="hierarchyMode">
+                  <option value="form-strategy" data-i18n="formThenStrategy">Source form → strategy</option>
+                  <option value="strategy-form" data-i18n="strategyThenForm">Strategy → source form</option>
+                </select>
+                <label for="minTile"><span data-i18n="minEntries">Minimum tile size</span> <output id="minTileValue">2</output></label>
+                <input id="minTile" type="range" min="1" max="40" step="1" value="2">
+              </div>
+            </div>
+            <p class="viz-help" data-i18n="chartTreemapHelp">Click a group or strategy tile to drill into the filtered corpus.</p>
+            <div id="treemapChart" class="chart-shell" role="img" aria-label="Treemap of source forms and translation strategies"></div>
+          </article>
+
+          <article class="panel viz-card">
+            <div class="viz-head">
+              <div>
+                <h3 data-i18n="chartScatterTitle">Name length and translation choice</h3>
+                <p class="viz-question" data-i18n="chartScatterQuestion">How do source and target name lengths relate to the selected translation strategy?</p>
+              </div>
+              <div class="viz-controls">
+                <label for="scatterColor" data-i18n="colorBy">Colour by</label>
+                <select id="scatterColor">
+                  <option value="strategy" data-i18n="strategy">Strategy</option>
+                  <option value="form" data-i18n="sourceForm">Source form</option>
+                </select>
+              </div>
+            </div>
+            <p class="viz-help" data-i18n="chartScatterHelp">Each point is one spray name. Click a point to focus on its strategy; hover for details.</p>
+            <div id="scatterChart" class="chart-shell" role="img" aria-label="Scatter plot of English and Chinese name lengths"></div>
+          </article>
+        </div>
+
+        <section class="panel table-panel" aria-labelledby="tableTitle">
+          <div class="section-heading">
+            <div>
+              <h3 id="tableTitle" data-i18n="tableTitle">Corpus data</h3>
+              <p data-i18n="tableHelp">Click a source or target name to search for it. Sort columns with the header buttons.</p>
+            </div>
+            <span id="showingCount" class="pill">Showing 939 of 939 entries</span>
+          </div>
+          <div class="table-wrap">
+            <table id="corpusTable">
+              <thead>
+                <tr>
+                  <th><button type="button" data-sort="id" data-i18n="colId">ID</button></th>
+                  <th><button type="button" data-sort="source_core" data-i18n="colSource">English name</button></th>
+                  <th><button type="button" data-sort="target_core" data-i18n="colTarget">Simplified Chinese name</button></th>
+                  <th><button type="button" data-sort="strategy" data-i18n="colStrategy">Strategy</button></th>
+                  <th><button type="button" data-sort="source_form" data-i18n="colForm">Source form</button></th>
+                  <th><button type="button" data-sort="human_checked" data-i18n="colChecked">Human checked</button></th>
+                  <th data-i18n="colLinks">Source links</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"><tr id="loadingRow"><td colspan="7"><span class="loading-mark" aria-hidden="true"></span> <span data-i18n="loadingCorpus">Loading corpus…</span></td></tr></tbody>
+            </table>
+          </div>
+          <p id="emptyState" class="empty-state" hidden data-i18n="noResults">No entries match these filters.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span data-i18n="footerNote">Built for Translation Technology in the Age of AI (2026R1). Corpus text remains in its original languages.</span>
+      <a href="report.html#method" data-i18n="methodShort">Read the method</a>
+    </div>
+  </footer>
+  <div id="chartTooltip" class="chart-tooltip" role="status" aria-live="polite"></div>
+  <noscript>This explorer requires JavaScript.</noscript>
+</body>
+</html>

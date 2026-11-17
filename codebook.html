@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bilingual codebook for the VALORANT spray-name translation corpus.">
+  <title>Codebook · Spraying Meaning</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css?v=20261117-controls2">
+  <link rel="stylesheet" href="assets/premium.css?v=20261117-controls2">
+  <script src="assets/i18n.js?v=20261117-controls2" defer></script>
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#codebook" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">SM</span><span class="brand-text" data-i18n="siteTitle">Spraying Meaning</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" data-i18n="navExplorer">Corpus Explorer</a>
+        <a href="report.html" data-i18n="navReport">Learning Report</a>
+        <a href="codebook.html" aria-current="page" data-i18n="navCodebook">Codebook</a>
+        <a href="review.html" data-i18n="navAudit">Audit Sample</a>
+        <a href="ai-use.html" data-i18n="navAI">AI Use</a>
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-set="en" data-i18n-aria-label="languageLabel">English</button>
+        <button type="button" data-lang-set="zh-Hans" data-i18n-aria-label="languageLabel">简体中文</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="codebook" class="container">
+    <section class="page-hero">
+      <span class="kicker" data-i18n="codebookKicker">Annotation framework</span>
+      <h1 data-i18n="navCodebook">Codebook</h1>
+      <p data-i18n="codebookLead">Six operational categories for analysing English–Simplified Chinese spray-name localisation.</p>
+    </section>
+
+    <div class="doc-layout">
+      <aside class="panel doc-nav">
+        <h2 data-i18n="navCodebook">Codebook</h2>
+        <a href="#overview" data-i18n="codebookOverview">Overview</a>
+        <a href="#literal" data-i18n="catLiteral">1 · Literal translation</a>
+        <a href="#paraphrase" data-i18n="catParaphrase">2 · Semantic paraphrase</a>
+        <a href="#transcreation" data-i18n="catTranscreation">3 · Transcreation</a>
+        <a href="#explicitation" data-i18n="catExplicitation">4 · Explicitation</a>
+        <a href="#cultural" data-i18n="catCultural">5 · Cultural substitution</a>
+        <a href="#retention" data-i18n="catRetention">6 · Retention / phonetic transfer</a>
+      </aside>
+
+      <article class="panel doc-body">
+        <div data-lang-pane="en">
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>The unit of analysis is a unique English spray name and its Simplified Chinese official localisation. One primary label is assigned to each pair. The label records the dominant translation move, not every micro-change. The source form is recorded separately as <em>single word</em>, <em>short phrase</em> or <em>clause</em>.</p>
+            <p>Decision order: first exclude retention/phonetic transfer if the name's identity is predominantly kept in Latin script or transferred phonetically; then check whether a recognisable Chinese idiom or culture-specific expression replaces the source image; then check whether the target adds information absent from the source; then decide whether the remaining relation is literal, a paraphrase, or a transcreation. Boundary cases are resolved by asking which strategy best explains the name's effect.</p>
+            <div class="notice"><strong>Important:</strong> these are analytic categories, not claims that the translators consciously followed them. Real examples can combine strategies; the label marks the primary move.</div>
+          </section>
+
+          <section id="literal">
+            <div class="codebook-entry">
+              <h3>1. Literal translation</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> the target keeps the source image, proposition and most lexical content, with ordinary grammatical adjustment only.</p>
+              <p><strong>Theory source:</strong> Vinay &amp; Darbelnet's direct procedure of literal translation; equivalence at the level of image and proposition.</p>
+              <p><strong>Decision rule:</strong> render the English core mentally into Chinese and check whether the target preserves the same image, participants and evaluation without adding a new idea.</p>
+              <div class="example-pair"><div><small>Positive</small>Sad Crab → 悲伤螃蟹</div><div><small>Positive</small>Revolving Door → 旋转门</div></div>
+              <p><strong>Negative example:</strong> Blep → 猫猫吐舌. The target adds a cat and an action, so it is explicitation rather than literal translation.</p>
+              <p><strong>Boundary case:</strong> Lights Out → 熄灯 is literal in image and proposition, even though the English is idiomatic; the Chinese keeps the same light-extinguishing image.</p>
+            </div>
+          </section>
+
+          <section id="paraphrase">
+            <div class="codebook-entry">
+              <h3>2. Semantic paraphrase</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> the core meaning is retained, but wording, syntax or lexical choice is substantially rephrased.</p>
+              <p><strong>Theory source:</strong> Vinay &amp; Darbelnet's modulation and paraphrase; Nida's dynamic equivalence as a broad functional orientation.</p>
+              <p><strong>Decision rule:</strong> the target says approximately the same thing as the source, but a literal back-translation would not match the original wording; no new information or strong Chinese cultural replacement is introduced.</p>
+              <div class="example-pair"><div><small>Positive</small>Take a Bow → 鞠躬</div><div><small>Positive</small>What's That? → 什么情况？</div></div>
+              <p><strong>Negative example:</strong> Break Time → 老铁困了. This creates a new informal persona and effect, so it is transcreation.</p>
+              <p><strong>Boundary case:</strong> This is Also Fine → 这样也好 is paraphrastic rather than literal because the English evaluative phrase is recast as a Chinese conversational response.</p>
+            </div>
+          </section>
+
+          <section id="transcreation">
+            <div class="codebook-entry">
+              <h3>3. Transcreation</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> the translator creates a new expression or image to preserve the name's playful, rhetorical or branding effect.</p>
+              <p><strong>Theory source:</strong> Gaballo on transcreation; functionalist skopos theory; creative adaptation of brand language.</p>
+              <p><strong>Decision rule:</strong> a literal or straightforward paraphrase would explain the source but lose the name's main effect; the target introduces a new wording, metaphor, persona or joke while keeping a recognisable function.</p>
+              <div class="example-pair"><div><small>Positive</small>Break Time → 老铁困了</div><div><small>Positive</small>No Toxicity → 无毒无害</div></div>
+              <p><strong>Negative example:</strong> Good Boy → 乖狗狗 is a close rendering of the same address and evaluation, so it is literal.</p>
+              <p><strong>Boundary case:</strong> No Toxicity → 无毒无害 overlaps with paraphrase because the core idea of harmlessness remains. It is transcreated because the Chinese four-character pattern creates a new slogan-like effect.</p>
+            </div>
+          </section>
+
+          <section id="explicitation">
+            <div class="codebook-entry">
+              <h3>4. Explicitation</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> the target adds information that is implicit in the source image or name, making an entity, action or context explicit.</p>
+              <p><strong>Theory source:</strong> Blum-Kulka's explicitation hypothesis; translation shifts that clarify cohesion and context.</p>
+              <p><strong>Decision rule:</strong> identify a concrete element in the target that is not stated in the English source and that is not required by Chinese grammar alone.</p>
+              <div class="example-pair"><div><small>Positive</small>Blep → 猫猫吐舌</div><div><small>Positive</small>Bawk Bawk Brimstone → 公鸡炼狱</div></div>
+              <p><strong>Negative example:</strong> Sad Crab → 悲伤螃蟹 adds nothing beyond ordinary grammatical expression, so it is literal.</p>
+              <p><strong>Boundary case:</strong> Yoonseul Frog → 高丽风情小蛙 adds cultural framing. It is classified as explicitation because the main move is to spell out the Korean association rather than replace the image with a Chinese one.</p>
+            </div>
+          </section>
+
+          <section id="cultural">
+            <div class="codebook-entry">
+              <h3>5. Cultural substitution</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> the target replaces a source-language image or phrase with a recognisable Chinese idiom, proverb or culture-specific expression.</p>
+              <p><strong>Theory source:</strong> Aixelá on culture-specific items; Venuti's domestication; Chinese idiom and four-character pattern as a local rhetorical resource.</p>
+              <p><strong>Decision rule:</strong> the target contains an established Chinese expression whose cultural form, not merely its meaning, explains the translation choice.</p>
+              <div class="example-pair"><div><small>Positive</small>All Yuck, No Yum → 味如嚼蜡</div><div><small>Positive</small>With Sage, Comes Fame → 有贤则名</div></div>
+              <p><strong>Negative example:</strong> What's That? → 什么情况？ is colloquial Chinese but not a culturally specific idiom replacing the source image.</p>
+              <p><strong>Boundary case:</strong> With Sage, Comes Fame → 有贤则名 combines a Chinese proverb-like pattern with a character name. It is cultural substitution because the idiom is the dominant reason the target works.</p>
+            </div>
+          </section>
+
+          <section id="retention">
+            <div class="codebook-entry">
+              <h3>6. Retention / phonetic transfer</h3>
+              <p class="codebook-meta"><strong>Definition:</strong> a proper name, acronym, number or brand element is retained in Latin script or transferred phonetically.</p>
+              <p><strong>Theory source:</strong> Aixelá's repetition and transference; proper-name translation and brand-name consistency.</p>
+              <p><strong>Decision rule:</strong> ask whether the name's identity is carried mainly by the original Latin form, a number, or a phonetic approximation. Partial retention counts when the untranslated element remains the name's anchor.</p>
+              <div class="example-pair"><div><small>Positive</small>VCT x EDG → VCT x EDG</div><div><small>Positive</small>Chamber → 尚勃勒</div></div>
+              <p><strong>Negative example:</strong> Jett → 捷风 is a semantic/creative Chinese rendering of the agent codename rather than phonetic transfer.</p>
+              <p><strong>Boundary case:</strong> KAY/O Punch → K/O重拳 retains the proper name but translates the action. It is classified as retention because the identity-bearing element stays in Latin script.</p>
+            </div>
+          </section>
+        </div>
+
+        <div data-lang-pane="zh-Hans" hidden>
+          <section id="zh-overview">
+            <h2>总览</h2>
+            <p>分析单位是一个唯一的英文喷漆名称及其官方简体中文译名。每个配对只赋予一个主要标签。标签记录主要翻译转换，而非所有微观改动。原文形式另以「单词」、「短语」或「子句」记录。</p>
+            <p>判定次序：先排除名称身份主要以拉丁字母保留或音译的「保留／音译」；再检查是否有可辨识的中文成语或文化特定表达取代原文意象；其后检查译文是否加入原文没有的信息；最后判断其余关系属于直译、语义改写或创译。边界案例以「哪一种策略最能解释名称效果」作判准。</p>
+            <div class="notice"><strong>重要：</strong>这些是分析类别，不代表译者自觉依循此分类。真实例子可同时包含多种策略；标签只标示主要转换。</div>
+          </section>
+
+          <section id="zh-literal">
+            <div class="codebook-entry">
+              <h3>1. 直译</h3>
+              <p class="codebook-meta"><strong>定义：</strong>译文保留原文意象、命题及大部分词汇内容，只作一般语法调整。</p>
+              <p><strong>理论来源：</strong>Vinay &amp; Darbelnet 的直接翻译程序；意象与命题层面的等值。</p>
+              <p><strong>判定规则：</strong>把英文核心直译成中文后，检查译文是否保留相同意象、参与者与评价，并且没有加入新概念。</p>
+              <div class="example-pair"><div><small>正面例子</small>Sad Crab → 悲伤螃蟹</div><div><small>正面例子</small>Revolving Door → 旋转门</div></div>
+              <p><strong>反面例子：</strong>Blep → 猫猫吐舌。译文加入猫与动作，因此属显化而非直译。</p>
+              <p><strong>边界案例：</strong>Lights Out → 熄灯虽然英文是惯用语，但中文仍保留「熄灯」意象，因此归为直译。</p>
+            </div>
+          </section>
+
+          <section id="zh-paraphrase">
+            <div class="codebook-entry">
+              <h3>2. 语义改写</h3>
+              <p class="codebook-meta"><strong>定义：</strong>保留核心意思，但大幅改写措辞、句法或词汇选择。</p>
+              <p><strong>理论来源：</strong>Vinay &amp; Darbelnet 的调节与改写；Nida 动态等值的广泛功能取向。</p>
+              <p><strong>判定规则：</strong>译文大致表达相同内容，但回译后与原文措辞明显不同；同时没有加入新信息，也没有明显替换为中文文化表达。</p>
+              <div class="example-pair"><div><small>正面例子</small>Take a Bow → 鞠躬</div><div><small>正面例子</small>What's That? → 什么情况？</div></div>
+              <p><strong>反面例子：</strong>Break Time → 老铁困了。译文建立新的非正式人物语气与效果，因此属创译。</p>
+              <p><strong>边界案例：</strong>This is Also Fine → 这样也好把英文评价句改写为中文会话回应，属语义改写而非直译。</p>
+            </div>
+          </section>
+
+          <section id="zh-transcreation">
+            <div class="codebook-entry">
+              <h3>3. 创译</h3>
+              <p class="codebook-meta"><strong>定义：</strong>译者创造新的表达或意象，以保留名称的趣味、修辞或品牌效果。</p>
+              <p><strong>理论来源：</strong>Gaballo 的创译论；功能目的论；品牌语言的创造性改写。</p>
+              <p><strong>判定规则：</strong>直译或直接改写虽能解释原文，却会失去名称的主要效果；译文引入新的措辞、比喻、人物语气或笑点，同时保留可辨识的功能。</p>
+              <div class="example-pair"><div><small>正面例子</small>Break Time → 老铁困了</div><div><small>正面例子</small>No Toxicity → 无毒无害</div></div>
+              <p><strong>反面例子：</strong>Good Boy → 乖狗狗保留相同称呼与评价，因此属直译。</p>
+              <p><strong>边界案例：</strong>No Toxicity → 无毒无害与语义改写有重叠，因为「无害」概念保留；但其四字口号效果是新造的，因此归为创译。</p>
+            </div>
+          </section>
+
+          <section id="zh-explicitation">
+            <div class="codebook-entry">
+              <h3>4. 显化</h3>
+              <p class="codebook-meta"><strong>定义：</strong>译文补充原文意象或名称中隐含的信息，使人物、动作或情境更明确。</p>
+              <p><strong>理论来源：</strong>Blum-Kulka 的显化假设；翻译中为澄清衔接与语境而产生的转换。</p>
+              <p><strong>判定规则：</strong>指出译文中一项英文没有明说、且不是中文语法所必需的具体元素。</p>
+              <div class="example-pair"><div><small>正面例子</small>Blep → 猫猫吐舌</div><div><small>正面例子</small>Bawk Bawk Brimstone → 公鸡炼狱</div></div>
+              <p><strong>反面例子：</strong>Sad Crab → 悲伤螃蟹除一般语法表达外没有新增内容，因此属直译。</p>
+              <p><strong>边界案例：</strong>Yoonseul Frog → 高丽风情小蛙加入文化框架。主要转换是把韩国联想说清楚，而非以中国意象替换，因此归为显化。</p>
+            </div>
+          </section>
+
+          <section id="zh-cultural">
+            <div class="codebook-entry">
+              <h3>5. 文化替换</h3>
+              <p class="codebook-meta"><strong>定义：</strong>译文以可辨识的中文成语、谚语或文化特定表达，替换原文意象或说法。</p>
+              <p><strong>理论来源：</strong>Aixelá 的文化特定项；Venuti 的归化；中文成语与四字格作为本地修辞资源。</p>
+              <p><strong>判定规则：</strong>译文包含一个既有中文表达，而翻译选择需由该文化形式（不只其意义）解释。</p>
+              <div class="example-pair"><div><small>正面例子</small>All Yuck, No Yum → 味如嚼蜡</div><div><small>正面例子</small>With Sage, Comes Fame → 有贤则名</div></div>
+              <p><strong>反面例子：</strong>What's That? → 什么情况？虽是中文口语，但不是以文化特定成语替换原文意象。</p>
+              <p><strong>边界案例：</strong>With Sage, Comes Fame → 有贤则名结合中文谚语式结构与角色名。成语是译文成立的主要原因，因此归为文化替换。</p>
+            </div>
+          </section>
+
+          <section id="zh-retention">
+            <div class="codebook-entry">
+              <h3>6. 保留／音译</h3>
+              <p class="codebook-meta"><strong>定义：</strong>专名、缩写、数字或品牌元素以拉丁字母保留，或以音译方式转入中文。</p>
+              <p><strong>理论来源：</strong>Aixelá 的重复与转移；专名翻译与品牌名称一致性。</p>
+              <p><strong>判定规则：</strong>判断名称身份是否主要由原有拉丁形式、数字或语音近似承载。若未翻译元素仍是名称核心，则属部分保留。</p>
+              <div class="example-pair"><div><small>正面例子</small>VCT x EDG → VCT x EDG</div><div><small>正面例子</small>Chamber → 尚勃勒</div></div>
+              <p><strong>反面例子：</strong>Jett → 捷风是对特工代号的语义／创意中文处理，不是音译。</p>
+              <p><strong>边界案例：</strong>KAY/O Punch → K/O重拳保留专名但翻译动作。由于身份核心仍在拉丁字母，因此归为保留。</p>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span data-i18n="footerNote">Built for Translation Technology in the Age of AI (2026R1). Corpus text remains in its original languages.</span>
+      <a href="index.html" data-i18n="navExplorer">Corpus Explorer</a>
+    </div>
+  </footer>
+</body>
+</html>
